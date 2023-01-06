@@ -5,6 +5,9 @@ const conn = require('./conn/conn');
 app.get('/', (req, res) => {
   res.send('funciona');
 });
+app.get('/login', (req, res) => {
+  res.send('login');
+});
 const userController = require('./controllers/userController');
 const adminController = require('./controllers/adminController');
 const authMiddleware = require('./middlewares/authMiddleware');
