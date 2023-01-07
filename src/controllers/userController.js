@@ -9,6 +9,7 @@ const index = (req, res) => {
   });
 };
 const store = (req, res) => {
+  console.log(req.body);
   const user = new User({
     name: req.body.name,
     email: req.body.email,
