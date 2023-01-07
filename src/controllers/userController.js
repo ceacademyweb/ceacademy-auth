@@ -1,5 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv').config();
 const index = (req, res) => {
   User.find({}, (err, result) => {
     if (err) {
@@ -27,7 +29,26 @@ const store = (req, res) => {
   });
 };
 
+const login = (req, res) => {
+  User.findOne({ email: req.body.email }, (err, result) => {
+    if (err)
+      return res
+        .status(400)
+        .send.json({ message: 'Usuario no encontrado', error: err });
+    if (result) {
+      if (bcrypt.compareSync(req.body.password, result.password)) {
+        jwt.sign({ user: result }, process.env.SECRET_KEY, (err, token) => {
+          res.json({ message: 'Autencicacion Correcta', token });
+        });
+      } else {
+        res.send.json({ message: 'Contraseña Incorrecta', error: err });
+      }
+    }
+  });
+};
+
 module.exports = {
   index,
   store,
+  login,
 };
