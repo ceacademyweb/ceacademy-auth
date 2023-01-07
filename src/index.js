@@ -3,28 +3,13 @@ const User = require('./models/User');
 
 const app = require('./server');
 const conn = require('./conn/conn');
+const userController = require('./controllers/userController');
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.get('/api/users', (req, res) => {
-  res.send('Welcome Users');
-  // User.find({}, (err, result) => {
-  //   if (err) {
-  //     res.json({ message: err });
-  //   } else {
-  //     res.send(result);
-  //   }
-  // });
-});
+// const userController = require('./controller/userController');
+app.get('/api/users', userController.index);
 
-app.post('api/users', (req, res) => {
-  const user = new User({
-    name: req.body.name,
-    username: req.body.username,
-    email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 10),
-  });
-  res.send(user);
-});
+app.post('/api/users', userController.store);

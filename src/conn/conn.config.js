@@ -12,4 +12,11 @@ module.exports = {
     database: 'ceacademy_db',
     port: process.env.MONGOPORT || 27017,
   },
+  // mongodb: {
+  //   host: 'containers-us-west-29.railway.app',
+  //   user: 'mongo',
+  //   password: 'QeqtrEAbNx1b8RZooPnX',
+  //   database: 'ceacademy_db',
+  //   port: 7198,
+  // },
 };
