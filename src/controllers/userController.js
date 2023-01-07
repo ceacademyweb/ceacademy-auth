@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const bcrypt = require('bcrypt');
 const index = (req, res) => {
   User.find({}, (err, result) => {
     if (err) {
