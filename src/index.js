@@ -9,13 +9,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/users', (req, res) => {
-  User.find({}, (err, result) => {
-    if (err) {
-      res.json({ message: err });
-    } else {
-      res.send(result);
-    }
-  });
+  res.send('Welcome Users');
+  // User.find({}, (err, result) => {
+  //   if (err) {
+  //     res.json({ message: err });
+  //   } else {
+  //     res.send(result);
+  //   }
+  // });
 });
 
 app.post('api/users', (req, res) => {
