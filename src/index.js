@@ -1,15 +1,14 @@
-const bcrypt = require('bcrypt');
-const User = require('./models/User');
-
 const app = require('./server');
 const conn = require('./conn/conn');
 const userController = require('./controllers/userController');
-
+const routesUsers = require('./routes/usersRoutes');
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-// const userController = require('./controller/userController');
-app.get('/api/users', userController.index);
+app.use(routesUsers);
 
-app.post('/api/users', userController.store);
+// // const userController = require('./controller/userController');
+// app.get('/users', userController.index);
+
+// app.post('/users', userController.store);
