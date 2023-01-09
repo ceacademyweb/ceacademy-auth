@@ -2,15 +2,18 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv').config();
+
 const index = (req, res) => {
+  console.log(req.body.user);
   User.find({}, (err, result) => {
     if (err) {
       res.json({ message: err });
     } else {
-      res.send(result);
+      res.json({ currentUser: req.user, result });
     }
   });
 };
+
 const store = (req, res) => {
   console.log(req.body);
   const user = new User({
@@ -47,8 +50,13 @@ const login = (req, res) => {
   });
 };
 
+const logout = (req, res) => {
+  res.send(req.token);
+};
+
 module.exports = {
   index,
   store,
   login,
+  logout,
 };

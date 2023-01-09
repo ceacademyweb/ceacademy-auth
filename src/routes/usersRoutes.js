@@ -7,6 +7,7 @@ const routesUsers = express.Router();
 routesUsers.get('/users', authMiddleware, userController.index);
 
 routesUsers.post('/users', authMiddleware, userController.store);
-routesUsers.post('/login', authMiddleware, userController.login);
+routesUsers.post('/login', userController.login);
+routesUsers.post('/logout', authMiddleware, userController.logout);
 
 module.exports = routesUsers;

@@ -35,7 +35,7 @@ const authMiddleware = () => {
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.listen(app.get('port'), () => {
-  console.log(`app run onposrt :${app.get('port')}`);
+  console.log(`app run on port ${app.get('port')}`);
 });
 
 module.exports = app;
