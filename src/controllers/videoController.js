@@ -24,19 +24,24 @@ const videosList = [
 ];
 
 const index = (req, res) => {
-  console.log(req.body.user);
-  User.find({}, (err, result) => {
+  Video.find({}, (err, result) => {
     if (err) {
-      res.json({ message: err });
+      res.status(4001).json({ message: 'Ha ocurrido un error', err });
     } else {
-      res.json({ currentUser: req.user, result });
+      res.send(result);
     }
   });
 };
 
 const show = (req, res) => {
-  const id = req.params.id;
-  res.send(id);
+  const _id = req.params.id;
+  Video.find({ _id }, (err, result) => {
+    if (err) {
+      res.status(4001).json({ message: 'Ha ocurrido un error', err });
+    } else {
+      res.send(result);
+    }
+  });
 };
 
 const store = (req, res) => {
@@ -54,6 +59,29 @@ const store = (req, res) => {
       res.status(401).json({ message: 'ha ocurrido un error', error: err });
     } else {
       res.send(result);
+    }
+  });
+};
+
+const update = (req, res) => {
+  const _id = req.params.id;
+  const data = req.body;
+  Video.findOneAndUpdate({ _id }, data, (err, result) => {
+    if (err) {
+      res.status(401).json({ message: 'Ha ocurrido un error', err });
+    } else {
+      res.send(result);
+    }
+  });
+};
+
+const videoDelete = (req, res) => {
+  const _id = req.params.id;
+  Video.findOneAndDelete({ _id }, (err, result) => {
+    if (err) {
+      res.status(401).json({ message: 'Ha ocurrido un error', err });
+    } else {
+      res.send('Video borrado');
     }
   });
 };
@@ -81,4 +109,6 @@ module.exports = {
   store,
   show,
   llenar,
+  update,
+  videoDelete,
 };
