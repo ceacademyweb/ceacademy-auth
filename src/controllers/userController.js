@@ -7,7 +7,7 @@ const index = (req, res) => {
   console.log(req.body.user);
   User.find({}, (err, result) => {
     if (err) {
-      res.json({ message: err });
+      res.status(401).send(err);
     } else {
       res.json({ currentUser: req.user, result });
     }
@@ -20,12 +20,44 @@ const store = (req, res) => {
     name: req.body.name,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 10),
-    active: false,
-    admin: false,
   });
   user.save((err, result) => {
     if (err) {
-      res.send('ha ocurrido un error ' + err);
+      res.status(401).send('ha ocurrido un error ' + err);
+    } else {
+      res.send(result);
+    }
+  });
+};
+
+const update = (req, res) => {
+  const _id = req.params.id;
+  const data = req.body;
+  User.findOneAndUpdate({ _id }, data, (err, result) => {
+    if (err) {
+      res.status(401).json({ message: 'Ha ocurrido un error', err });
+    } else {
+      res.send(result);
+    }
+  });
+};
+
+const userDelete = (req, res) => {
+  const _id = req.params.id;
+  User.findOneAndDelete({ _id }, (err, result) => {
+    if (err) {
+      res.status(401).json({ message: 'Ha ocurrido un error', err });
+    } else {
+      res.send('Video borrado');
+    }
+  });
+};
+
+const show = (req, res) => {
+  const _id = req.params.id;
+  User.find({ _id }, (err, result) => {
+    if (err) {
+      res.status(4001).json({ message: 'Ha ocurrido un error', err });
     } else {
       res.send(result);
     }
@@ -59,4 +91,7 @@ module.exports = {
   store,
   login,
   logout,
+  update,
+  userDelete,
+  show,
 };

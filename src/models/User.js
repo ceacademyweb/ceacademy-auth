@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  role: {
+  admin: {
     type: Boolean,
     default: false,
   },
