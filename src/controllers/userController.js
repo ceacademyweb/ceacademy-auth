@@ -65,6 +65,7 @@ const show = (req, res) => {
 };
 
 const login = (req, res) => {
+  console.log('login');
   User.findOne({ email: req.body.email }, (err, result) => {
     if (err) res.status(400).send('ha ocurrido un error');
     if (result) {
