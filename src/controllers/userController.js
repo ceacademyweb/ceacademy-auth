@@ -66,18 +66,34 @@ const show = (req, res) => {
 
 const login = (req, res) => {
   User.findOne({ email: req.body.email }, (err, result) => {
-    if (err)
-      return res
-        .status(400)
-        .send.json({ message: 'Usuario no encontrado', error: err });
+    if (err) res.status(400).send('ha ocurrido un error');
     if (result) {
+      const ud = {
+        id: result.id,
+        name: result.name,
+        email: result.email,
+      };
       if (bcrypt.compareSync(req.body.password, result.password)) {
-        jwt.sign({ user: result }, process.env.SECRET_KEY, (err, token) => {
-          res.json({ message: 'Autencicacion Correcta', token });
-        });
+        jwt.sign(
+          { user: result },
+          process.env.SECRET_KEY,
+          { expiresIn: '86400000ms' },
+          (err, token) => {
+            console.log({ message: 'Autencicacion Correcta', token });
+            res.json({
+              message: 'Autenticacion Correcta',
+              userData: ud,
+              userData: ud,
+              token,
+              status: 200,
+            });
+          }
+        );
       } else {
-        res.send.json({ message: 'Contraseña Incorrecta', error: err });
+        res.send({ message: 'NO autorizado', status: 401 });
       }
+    } else {
+      res.send({ message: 'El Correo no existes', status: 401 });
     }
   });
 };
