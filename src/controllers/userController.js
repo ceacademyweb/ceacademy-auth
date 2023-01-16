@@ -19,7 +19,14 @@ const store = (req, res) => {
   const user = new User({
     name: req.body.name,
     email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 10),
+    lastName: req.body.lastName,
+    email: req.body.email,
+    address: req.body.address,
+    discordId: req.body.discordId,
+    telegramId: req.body.telegramId,
+    phone: req.body.name,
+    codeMember: req.body.codeMember,
+    // password: bcrypt.hashSync(req.body.password, 8),
   });
   user.save((err, result) => {
     if (err) {
@@ -73,6 +80,7 @@ const login = (req, res) => {
         id: result.id,
         name: result.name,
         email: result.email,
+        active: result.active,
       };
       if (bcrypt.compareSync(req.body.password, result.password)) {
         jwt.sign(
@@ -83,7 +91,6 @@ const login = (req, res) => {
             console.log({ message: 'Autencicacion Correcta', token });
             res.json({
               message: 'Autenticacion Correcta',
-              userData: ud,
               userData: ud,
               token,
               status: 200,
