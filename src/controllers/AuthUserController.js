@@ -62,6 +62,7 @@ const updatePassword = (req, res) => {
   const data = {
     password: bcrypt.hashSync(random, 8),
     text: random,
+    new: 0,
   };
   // return res.send(data);
   User.findOneAndUpdate({ _id }, data, (err, result) => {
