@@ -55,6 +55,17 @@ const senEmail = (res, data, result) => {
   );
 };
 
+const usersNew = (req, res) => {
+  // return res.send('users nuevos');
+  User.find({ new: 1 }, (err, result) => {
+    if (err) {
+      res.status(401).send(err);
+    } else {
+      res.json({ currentUser: req.user, result });
+    }
+  });
+};
+
 const updatePassword = (req, res) => {
   const random = generarString(100, 999);
   const _id = req.params.id;
@@ -78,4 +89,5 @@ const updatePassword = (req, res) => {
 module.exports = {
   index,
   updatePassword,
+  usersNew,
 };

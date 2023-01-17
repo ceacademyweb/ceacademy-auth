@@ -6,6 +6,7 @@ const authMiddleware = require('../middlelwares/authMiddleware');
 const adminRoutes = express.Router();
 
 adminRoutes.get('/', adminController.index);
+adminRoutes.get('/users/nuevos', authController.usersNew);
 adminRoutes.get('/auth', authController.index);
 adminRoutes.get('/auth/:id', authController.updatePassword);
 adminRoutes.post('/', adminController.store);
