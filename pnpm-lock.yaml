@@ -10,6 +10,7 @@ specifiers:
   jsonwebtoken: ^9.0.0
   mongoose: ^6.8.2
   morgan: ^1.10.0
+  nodemailer: ^6.9.0
   nodemon: ^2.0.20
 
 dependencies:
@@ -21,6 +22,7 @@ dependencies:
   express: 4.18.2
   jsonwebtoken: 9.0.0
   mongoose: 6.8.2
+  nodemailer: 6.9.0
 
 devDependencies:
   morgan: 1.10.0
@@ -1704,6 +1706,11 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
+    dev: false
+
+  /nodemailer/6.9.0:
+    resolution: {integrity: sha512-jFaCEGTeT3E/m/5R2MHWiyQH3pSARECRUDM+1hokOYc3lQAAG7ASuy+2jIsYVf+RVa9zePopSQwKNVFH8DKUpA==}
+    engines: {node: '>=6.0.0'}
     dev: false
 
   /nodemon/2.0.20:
