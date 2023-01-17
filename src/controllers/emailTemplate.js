@@ -538,7 +538,7 @@ a {text-decoration: none;}
                                 <td align="left" style="padding:0;Margin:0;padding-bottom:20px">
                                   <p
                                     style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#2E3440;font-size:14px">
-                                    Estos son tus credenciales de acceso a nuestra plataforma:.</p>
+                                    Estos son tus credenciales de acceso a nuestra plataforma:</p>
                                 </td>
                               </tr>
                               <tr>
