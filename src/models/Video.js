@@ -13,6 +13,9 @@ const videoSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  fase: {
+    type: String,
+  },
   createByName: {
     type: String,
   },
