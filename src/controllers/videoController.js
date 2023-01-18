@@ -51,10 +51,10 @@ const store = (req, res) => {
     url: req.body.url,
     fase: req.body.fase,
     active: req.body.active,
-    createById: req.user.user._id,
-    createByName: req.user.user.name,
+    createById: '63c1c45896fed4d5dab67bd9',
+    createByName: 'Florentino',
   });
-  res.send(video);
+  // res.send(video);
   video.save((err, result) => {
     if (err) {
       res.status(401).json({ message: 'ha ocurrido un error', error: err });
