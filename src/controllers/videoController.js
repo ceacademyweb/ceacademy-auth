@@ -47,8 +47,9 @@ const show = (req, res) => {
 const store = (req, res) => {
   // res.send(req.body);
   const video = new Video({
-    // name: req.body.name,
+    name: req.body.name,
     url: req.body.url,
+    fase: req.body.fase,
     active: req.body.active,
     createById: req.user.user._id,
     createByName: req.user.user.name,
