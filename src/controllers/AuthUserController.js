@@ -42,7 +42,7 @@ const senEmail = (res, data, result) => {
   });
   return transporter.sendMail(
     {
-      from: '"Informacion CEACADEMY" <no-replay@ceacademy.world>', // sender address
+      from: '"Informacion CEACADEMY" <becas@ceacademy.world>', // sender address
       to: result.email, // list of receivers
       subject: 'Cuenta Aceptada', // Subject line
       // text: 'Hello world?', // plain text body
