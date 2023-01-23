@@ -30,6 +30,7 @@ const store = (req, res) => {
   });
   user.save((err, result) => {
     if (err) {
+      console.log(err);
       res.status(401).send('ha ocurrido un error ' + err);
     } else {
       res.send(result);

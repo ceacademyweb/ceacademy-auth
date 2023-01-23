@@ -36,13 +36,13 @@ const senEmail = (res, data, result) => {
     port: 465,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: 'info@ceacademy.world', // generated ethereal user
+      user: 'becas@ceacademy.world', // generated ethereal user
       pass: 'CEAcademy(2023)*', // generated ethereal password
     },
   });
   return transporter.sendMail(
     {
-      from: '"Info CEACADEMY" <info@ceacademy.world>', // sender address
+      from: '"Informacion CEACADEMY" <no-replay@ceacademy.world>', // sender address
       to: result.email, // list of receivers
       subject: 'Cuenta Aceptada', // Subject line
       // text: 'Hello world?', // plain text body
