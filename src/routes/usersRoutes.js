@@ -4,7 +4,7 @@ const authMiddleware = require('../middlelwares/authMiddleware');
 
 const routesUsers = express.Router();
 
-routesUsers.get('/users', authMiddleware, userController.index);
+routesUsers.get('/users', userController.index);
 routesUsers.get('/user/:id', userController.show);
 
 routesUsers.post('/users', userController.store);
