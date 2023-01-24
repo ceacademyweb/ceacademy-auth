@@ -32,12 +32,12 @@ const index = (req, res) => {
 const senEmail = (res, data, result) => {
   // return res.send(data);
   let transporter = nodemailer.createTransport({
-    host: 'smtp.mailgun.org',
+    host: 'smtp.mailersend.net',
     port: 587,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: 'postmaster@sandbox0f13017a69d546a0a5e1f34e625bf85e.mailgun.org', // generated ethereal user
-      pass: 'CEAcademy(2023)*/', // generated ethereal password
+      user: 'MS_5Xy9Wi@ceacademy.world', // generated ethereal user
+      pass: 'AXPfX2AXmgJGmcsd', // generated ethereal password
     },
   });
   return transporter.sendMail(
