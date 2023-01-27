@@ -72,8 +72,14 @@ const show = (req, res) => {
   });
 };
 
+// const login = (req, res) => {
+//   console.log(req.body);
+//   res.send({ message: req.body });
+// };
+
 const login = (req, res) => {
   console.log('login');
+  console.log(req.body);
   User.findOne({ email: req.body.email }, (err, result) => {
     if (err) res.status(400).send('ha ocurrido un error');
     if (result) {

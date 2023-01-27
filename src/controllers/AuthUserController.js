@@ -32,17 +32,17 @@ const index = (req, res) => {
 const senEmail = (res, data, result) => {
   // return res.send(data);
   let transporter = nodemailer.createTransport({
-    host: 'smtp.mailersend.net',
+    host: 'smtp.zoho.com',
     port: 587,
-    secure: true, // true for 465, false for other ports
+    secure: false, // true for 465, false for other ports
     auth: {
-      user: 'MS_5Xy9Wi@ceacademy.world', // generated ethereal user
-      pass: 'AXPfX2AXmgJGmcsd', // generated ethereal password
+      user: 'becas@ceacademy.world', // generated ethereal user
+      pass: 'CEAcademy(2023)*/', // generated ethereal password
     },
   });
   return transporter.sendMail(
     {
-      from: '"Informacion CEACADEMY" <no-replay@ceacademy.world>', // sender address
+      from: '"Informacion CEACADEMY" <becas@ceacademy.world>', // sender address
       to: result.email, // list of receivers
       subject: 'Cuenta Aceptada', // Subject line
       // text: 'Hello world?', // plain text body
