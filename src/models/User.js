@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
   codeMember: {
     type: String,
     required: true,
+    unique: true,
   },
   new: {
     type: Number,
