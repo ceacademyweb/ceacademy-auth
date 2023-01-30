@@ -22,6 +22,9 @@ const videoSchema = new mongoose.Schema({
   createById: {
     type: String,
   },
+  pos: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

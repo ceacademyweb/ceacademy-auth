@@ -53,6 +53,7 @@ const store = (req, res) => {
     active: req.body.active,
     createById: '63c1c45896fed4d5dab67bd9',
     createByName: 'Florentino',
+    pos: req.body.pos,
   });
   // res.send(video);
   video.save((err, result) => {
