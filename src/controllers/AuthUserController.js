@@ -67,7 +67,7 @@ const usersNew = (req, res) => {
 };
 
 const updatePassword = (req, res) => {
-  const random = generarString(100, 999);
+  const random = generarString(100, 999).trim();
   const _id = req.params.id;
   // return res.send(_id);
   const data = {
