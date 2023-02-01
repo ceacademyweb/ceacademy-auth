@@ -5,9 +5,7 @@ mongoose.set('strictQuery', false);
 const mongodb = connOBJ.mongodb;
 
 //mongodb://${{ MONGOUSER }}:${{ MONGOPASSWORD }}@${{ MONGOHOST }}:${{ MONGOPORT }}
-const url = process.env.MONGOUSER
-  ? `mongodb://${mongodb.user}:${mongodb.password}@${mongodb.host}:${mongodb.port}`
-  : `mongodb://${mongodb.host}:${mongodb.port}/${mongodb.database}`;
+const url = `mongodb://${mongodb.user}:${mongodb.password}@${mongodb.host}:${mongodb.port}`;
 
 console.log(url);
 const conn = mongoose
