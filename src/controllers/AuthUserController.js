@@ -36,8 +36,8 @@ const senEmail = (res, data, result) => {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: 'ceacademy.web@gmail.com', // generated ethereal user
-      pass: 'CAyIcf69xNpX2StR', // generated ethereal password
+      user: 'becas@ceacademy.world', // generated ethereal user
+      pass: 'CEAcademy(2023)*/', // generated ethereal password
     },
   });
   return transporter.sendMail(
