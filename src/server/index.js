@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const morgan = require('morgan');
 const cors = require('cors');
+const fileUpload = require('express-fileupload')
 // const exphds = require('express-handlebars');
 
 const app = express();
@@ -12,6 +13,7 @@ app.set('port', process.env.PORT || 5000);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
+app.use(fileUpload());
 app.use(morgan('dev'));
 app.use(cors());
 
