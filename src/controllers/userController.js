@@ -88,6 +88,8 @@ const login = (req, res) => {
         name: result.name,
         email: result.email,
         active: result.active,
+        journal: result.journalLevel,
+        isAdmin: result.isAdmin,
       };
       if (bcrypt.compareSync(req.body.password, result.password)) {
         jwt.sign(
