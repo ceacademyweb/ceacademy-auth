@@ -91,6 +91,7 @@ const login = (req, res) => {
         journal: result.journalLevel,
         isAdmin: result.isAdmin,
       };
+      console.log(ud);
       if (bcrypt.compareSync(req.body.password, result.password)) {
         jwt.sign(
           { user: result },
@@ -100,7 +101,7 @@ const login = (req, res) => {
             console.log({ message: 'Autencicacion Correcta', token });
             res.json({
               message: 'Autenticacion Correcta',
-              userData: ud,
+              userData: result,
               token,
               status: 200,
             });
