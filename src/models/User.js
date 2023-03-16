@@ -56,6 +56,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  journal: {
+    type: Boolean,
+    default: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

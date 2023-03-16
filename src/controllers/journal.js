@@ -2,6 +2,7 @@ const { appendFile } = require('fs/promises');
 const path = require('path');
 
 const Journal = require('../models/journal');
+const User = require('../models/User');
 
 const url = 'https://ceacademy-auth-production.up.railway.app'; //"http://localhost:5000";
 const index = (req, res) => {
@@ -36,11 +37,23 @@ const store = (req, res) => {
         userId: body.userId,
         imagePath: `${url}/uploads/${fileName1}`,
         level: 0,
+        phase: body.journalFase,
       });
       journal.save((err, result) => {
         if (err)
           return res.status(400).send({ message: 'Error saving journal' });
-        return res.send({ message: 'Journal saved', result });
+        User.findOneAndUpdate(
+          { _id: body.userId },
+          { journal: true },
+          (error, user) => {
+            if (error) {
+              console.log(error);
+              return res.status(400).send(error);
+            }
+            console.log(user);
+            return res.send({ message: 'Journal saved', result });
+          }
+        );
       });
     } catch (error) {
       console.error(`Got an error trying to append the file: ${error.message}`);
