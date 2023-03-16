@@ -91,8 +91,8 @@ const login = (req, res) => {
         journal: result.journalLevel,
         isAdmin: result.isAdmin,
       };
-      console.log(ud);
       if (bcrypt.compareSync(req.body.password, result.password)) {
+        console.log(result);
         jwt.sign(
           { user: result },
           process.env.SECRET_KEY,
