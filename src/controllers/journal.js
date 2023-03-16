@@ -40,7 +40,7 @@ const store = (req, res) => {
       journal.save((err, result) => {
         if (err)
           return res.status(400).send({ message: 'Error saving journal' });
-        return res.send({ message: 'Journal saved' });
+        return res.send({ message: 'Journal saved', result });
       });
     } catch (error) {
       console.error(`Got an error trying to append the file: ${error.message}`);
