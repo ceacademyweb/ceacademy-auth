@@ -8,6 +8,10 @@ const journal = new mongoose.Schema({
   imagePath:{
     type: String,
   },
+  ext:{
+    type: String,
+  },
+
   phase:{
     type: Number
   },

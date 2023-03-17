@@ -15,6 +15,10 @@ app.use(routesUsers);
 app.use(routesvideos);
 app.use(routesJournal);
 app.use('/admin', routesadmin);
+app.get('/obt', (req, res) => {
+  console.log('entra');
+  res.send('llega');
+});
 
 // app.get('/admin', adminMiddleware, (req, res) => {
 //   res.send('Hello Admin!');

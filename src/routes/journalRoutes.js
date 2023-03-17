@@ -11,11 +11,15 @@ const authMiddleware = require('../middlelwares/authMiddleware');
 const routesJournal = express.Router();
 
 routesJournal.get('/journal', index);
-routesJournal.get('journal/:id', show);
+routesJournal.get('/journal/:id', show);
 
 routesJournal.post('/journal', store);
-routesJournal.put('journal/:id', update);
-routesJournal.delete('journal/:id', destroy);
+routesJournal.put('/journal/:id', update);
+routesJournal.delete('/journal/:id', destroy);
+
+routesJournal.get('/alt/:id', (req, res) => {
+  console.log(req.params.id);
+  res.send(req.params.id);
+});
 
 module.exports = routesJournal;
-

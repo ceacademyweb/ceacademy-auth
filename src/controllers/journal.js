@@ -9,7 +9,10 @@ const index = (req, res) => {
   res.send('Journal index');
 };
 const show = (req, res) => {
-  res.send('Journal show');
+  const id = req.params.id;
+  Journal.find({ userId: id }, (err, result) => {
+    res.send(result);
+  });
 };
 
 const store = (req, res) => {
@@ -36,6 +39,7 @@ const store = (req, res) => {
       const journal = new Journal({
         userId: body.userId,
         imagePath: `${url}/uploads/${fileName1}`,
+        ext: ext,
         level: 0,
         phase: body.journalFase,
       });
