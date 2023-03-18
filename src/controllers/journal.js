@@ -1,5 +1,6 @@
 const { appendFile } = require('fs/promises');
 const path = require('path');
+const fs = require('fs');
 
 const Journal = require('../models/journal');
 const User = require('../models/User');
@@ -105,10 +106,31 @@ const destroy = (req, res) => {
   res.send({ message: 'Journal destroy' });
 };
 
+const readFile = (req, res) => {
+  fs.readdir(path.join(__dirname, '../public/uploads/'), (err, files)=> {
+    if (err) {
+      return console.log('Unable to scan directory: ' + err);
+    }
+   for (let file in files) {
+     console.log(`${file} archivo`);
+     fs.unlink(path.join(__dirname, `../public/uploads/${files[file]}`), (err) => {
+        if (err) {
+          console.error(err)
+          return
+        }
+        console.log('File deleted successfully')
+     })
+   }
+
+    res.send('Archivos eliminados');
+  })
+}
+
 module.exports = {
   index,
   show,
   store,
   update,
   destroy,
+  readFile
 };

@@ -5,6 +5,7 @@ const {
   store,
   update,
   destroy,
+  readFile
 } = require('../controllers/journal');
 const authMiddleware = require('../middlelwares/authMiddleware');
 
@@ -14,6 +15,7 @@ routesJournal.get('/journal', index);
 routesJournal.get('/journal/:id', show);
 
 routesJournal.post('/journal', store);
+routesJournal.get('/files', readFile);
 routesJournal.put('/journal/:id', update);
 routesJournal.delete('/journal/:id', destroy);
 
