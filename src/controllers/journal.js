@@ -8,7 +8,9 @@ const User = require('../models/User');
 const url = 'https://ceacademy-auth-production.up.railway.app'; //"http://localhost:5000";
 // const url = "http://localhost:5000";
 const index = (req, res) => {
-  res.send('Journal index');
+  Journal.find({},(err,result)=>{
+    res.send(result);
+  })// res.send('Journal index');
 };
 const show = (req, res) => {
   const id = req.params.id;
