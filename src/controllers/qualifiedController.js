@@ -26,7 +26,7 @@ const store = (req, res) => {
   async function appendToFile(filePathName, data) {
     try {
       console.log(filePathName);
-      // await appendFile(filePathName, data, { flag: 'w' });
+      await appendFile(filePathName, data, { flag: 'w' });
       const newRows = {
         journalQualifieldPath: `${url}/uploads/${fileName1}`,
         journalQualifieldExt: ext,
@@ -34,7 +34,7 @@ const store = (req, res) => {
       }
       Journal.findOneAndUpdate({_id: body.journalId, userId:body.userId},newRows, (err,result) => {
         if(err) return res.status(400).send({message: 'Error saving journal'});
-        res.send(result);
+        res.send({message: 'Journal saved successfully', result});
       })
       // res.send(fileName)
     }catch(error){
