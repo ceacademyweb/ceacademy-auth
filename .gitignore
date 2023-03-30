@@ -1,3 +1,4 @@
 /node_modules
 .env
 /videos
+/src/public/uploads

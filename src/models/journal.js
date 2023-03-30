@@ -22,6 +22,12 @@ const journal = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  journalQualifieldPath:{
+    type: String,
+  },
+  journalQualifieldExt:{
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
