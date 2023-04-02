@@ -4,7 +4,7 @@ const {
   // show,
   store,
   // update,
-  // destroy,
+  destroy,
   // readFile
 } = require('../controllers/qualifiedController');
 const authMiddleware = require('../middlelwares/authMiddleware');
@@ -13,5 +13,6 @@ const routesQualified = express.Router();
 
 
 routesQualified.post('/qualified', store);
+routesQualified.put('/qualified/:id', destroy);
 
 module.exports = routesQualified;

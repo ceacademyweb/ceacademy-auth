@@ -5,17 +5,17 @@ const {
   store,
   update,
   destroy,
-  readFile
-} = require('../controllers/journal');
+  showOne
+} = require('../controllers/journalController');
 const authMiddleware = require('../middlelwares/authMiddleware');
 
 const routesJournal = express.Router();
 
-routesJournal.get('/journal', index);
-routesJournal.get('/journal/:id', show);
+routesJournal.get('/journals', index);
+routesJournal.get('/journals/:id', show);
+routesJournal.get('/journal/:id', showOne);
 
 routesJournal.post('/journal', store);
-routesJournal.get('/files', readFile);
 routesJournal.put('/journal/:id', update);
 routesJournal.delete('/journal/:id', destroy);
 

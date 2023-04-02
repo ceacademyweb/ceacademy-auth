@@ -8,52 +8,56 @@ const User = require('../models/User');
 const url = 'https://ceacademy-auth-production.up.railway.app'; //"http://localhost:5000";
 // const url = "http://localhost:5000";
 const store = (req, res) => {
+  console.log(req.body)
   const body = req.body;
-
-  const file = req.files.file;
-  const mimeType = file.mimetype.split('/')[1];
-  if (
-    mimeType !== 'jpeg' &&
-    mimeType !== 'png' &&
-    mimeType !== 'jpg' &&
-    mimeType !== 'pdf'
-  ) {
-    return res.status(400).send({ message: 'File type not allowed' });
+  const updates = {
+    qualified: true,
+    journalQualifieldPath: body.url,
+    journalQualifieldExt: body.ext,
+    journalQualifieldRefFileStorage: body.refFileStorage,
   }
-  const ext = mimeType === 'jpeg' ? 'jpg' : mimeType;
-  const fileName = `${body.userId}_${Date.now()}-qualifield.${ext}`;
-  const fileName1 = `${body.userId}_${Date.now()}-qualifield.${ext}`;
-  async function appendToFile(filePathName, data) {
-    try {
-      console.log(filePathName);
-      await appendFile(filePathName, data, { flag: 'w' });
-      const newRows = {
-        journalQualifieldPath: `${url}/uploads/${fileName1}`,
-        journalQualifieldExt: ext,
-        qualified: true,
-      }
-      Journal.findOneAndUpdate({_id: body.journalId, userId:body.userId},newRows, (err,result) => {
-        if(err) return res.status(400).send({message: 'Error saving journal'});
-        res.send({message: 'Journal saved successfully', result});
-      })
-      // res.send(fileName)
-    }catch(error){
-      console.error(`Got an error trying to append the file: ${error.message}`);
+  Journal.findOneAndUpdate({_id: body.id}, updates, (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: err });
     }
-  }
-  appendToFile(
-    path.join(__dirname, `../public/uploads/${fileName}`),
-    file.data
-  );
-  // res.send({ body, fileName });
+      Journal.findOne({_id: body.id}, (err1, result1) => {
+        if (err1) return res.status(400).json({ error: err });
+        console.log(result1)
+        const resu=[result1]
+        return res.send(resu);
+      })
+  })
 }
 
+
+const destroy = (req, res) => {
+  const id = req.params.id;
+  const updates = {
+    qualified: false,
+    journalQualifieldPath: null,
+    journalQualifieldExt: null,
+    journalQualifieldRefFileStorage: null,
+  }
+  // res.send({id, body, updates})
+  Journal.findOneAndUpdate({_id: id}, updates, (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: err });
+    }
+    Journal.findOne({_id: id}, (err, result) => {
+      console.log([result])
+      const arr = [result]
+      return res.send(arr);
+    })
+  })
+}
 
 module.exports = {
   // index,
   // show,
   store,
   // update,
-  // destroy,
+  destroy,
   // readFile
 };

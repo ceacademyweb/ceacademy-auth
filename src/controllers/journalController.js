@@ -1,0 +1,88 @@
+const Journal = require('../models/journal');
+const User = require('../models/User');
+
+const index = (req, res) => {
+  Journal.find({}, (err, result) => {
+    if (err) {
+      return res.status(401).send(err);
+    }
+    res.send(result);
+  })
+};
+
+const show = (req, res) => {
+  const id = req.params.id;
+  Journal.find({ userId: id }, (err, result) => {
+    res.send(result);
+  });
+};
+
+const showOne = (req, res) => {
+  const id = req.params.id;
+  Journal.find({ _id : id }, (err, result) => {
+    res.send(result);
+  });
+}
+
+const store = (req, res) => {
+  // let user = []
+  User.findOne({_id: req.body.userId}, (err, result) => {
+    if (err) return res.status(400).send(err);
+    const user = result;
+    const journal = new Journal({
+      userId: req.body.userId,
+      user: user,
+      urlFile: req.body.url,
+      refFileStorage: req.body.refFileStorage,
+      ext: req.body.ext,
+    })
+    console.log(journal)
+    journal.save((err, result) => {
+      if (err) {
+        console.log(err);
+        res.status(401).send('ha ocurrido un error ' + err);
+      } else {
+        console.log(result)
+        res.send(result);
+      }
+    });
+  })
+  // const journal = new Journal({
+  //   userId: req.body.userId,
+  //   user: user,
+  //   urlFile: req.body.url,
+  //   ext: req.body.ext,
+  // })
+  // // return res.send(journal);
+  // journal.save((err, result) => {
+  //   if (err) {
+  //     console.log(err);
+  //     res.status(401).send('ha ocurrido un error ' + err);
+  //   } else {
+  //     console.log(result)
+  //     res.send(result);
+  //   }
+  // });
+};
+
+const update = (req, res) => {};
+
+const destroy = (req, res) => {
+  const id = req.params.id;
+  Journal.findOneAndDelete({ _id: id }, (err, result) => {
+    if (err) {
+      res.status(401).json({ message: 'Ha ocurrido un error', err });
+    } else {
+      res.send('Video borrado');
+    }
+  });
+};
+
+module.exports = {
+  index,
+  show,
+  store,
+  update,
+  destroy,
+  showOne
+};

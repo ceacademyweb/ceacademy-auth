@@ -19,10 +19,6 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  journals:{
-    type: Number,
-    default: 0,
-  },
   new: {
     type: Number,
     default: 1,
@@ -51,7 +47,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-
+  level: {
+    type: Number,
+    default: 1,
+  },
   password: {
     type: String,
     required: false,
@@ -59,10 +58,6 @@ const userSchema = new mongoose.Schema({
   text: {
     type: String,
     required: false,
-  },
-  journal: {
-    type: Boolean,
-    default: false,
   },
   createdAt: {
     type: Date,

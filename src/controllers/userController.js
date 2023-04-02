@@ -15,12 +15,10 @@ const index = (req, res) => {
 };
 
 const store = (req, res) => {
-  console.log(req.body);
   const user = new User({
     name: req.body.name,
     email: req.body.email,
     lastName: req.body.lastName,
-    email: req.body.email,
     address: req.body.address,
     discordId: req.body.discordId,
     telegramId: req.body.telegramId,

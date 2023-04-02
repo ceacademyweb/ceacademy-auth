@@ -5,24 +5,30 @@ const journal = new mongoose.Schema({
     type: String,
     required: true,
   },
-  imagePath:{
+  user: {
+    type: Object
+  },
+  urlFile:{
+    type: String,
+  },
+  refFileStorage: {
     type: String,
   },
   ext:{
     type: String,
   },
-
-  phase:{
-    type: Number
-  },
   level:{
-    type: Number
+    type: Number,
+    default: 1
   },
   qualified:{
     type: Boolean,
     default: false
   },
   journalQualifieldPath:{
+    type: String,
+  },
+  journalQualifieldRefFileStorage:{
     type: String,
   },
   journalQualifieldExt:{
