@@ -13,10 +13,10 @@ const index = (req, res) => {
 
 const show = (req, res) => {
   const id = req.params.id;
-
-  Journal.find({ userId: id }, (err, result) => {
-    res.send(result);
-  });
+  console.log(id)
+  // Journal.find({ userId: id }, (err, result) => {
+  //   res.send(result);
+  // });
 };
 
 const showOne = (req, res) => {
@@ -101,6 +101,16 @@ const journalUpdate ={
   })
 };
 
+const getJournalsForUser = (req, res) => {
+  console.log('llega')
+  const id = req.params.id;
+  console.log(id)
+  res.send(id)
+  // Journal.find({ userId: id }, (err, result) => {
+  //   res.send(result);
+  // });
+}
+
 module.exports = {
   index,
   show,
@@ -108,5 +118,6 @@ module.exports = {
   update,
   destroy,
   showOne,
-  storeJournalAdmin
+  storeJournalAdmin,
+  getJournalsForUser
 };

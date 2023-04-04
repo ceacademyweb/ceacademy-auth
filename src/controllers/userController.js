@@ -95,6 +95,7 @@ const show = (req, res) => {
     if (err) {
       res.status(4001).json({ message: 'Ha ocurrido un error', err });
     } else {
+      console.log(result)
       res.send(result);
     }
   });

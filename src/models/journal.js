@@ -23,7 +23,7 @@ const journal = new mongoose.Schema({
   },
   level:{
     type: Number,
-    default: 1
+    default: 0
   },
   qualified:{
     type: Boolean,
