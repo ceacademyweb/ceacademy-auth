@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
+const {SchemaType, Schema} = require("mongoose");
 
 const journal = new mongoose.Schema({
   userId: {
     type: String,
     required: true,
+  },
+  _user:{
+    type: Schema.Types.ObjectId,
   },
   user: {
     type: Object

@@ -5,7 +5,8 @@ const {
   store,
   update,
   destroy,
-  showOne
+  showOne,
+  storeJournalAdmin
 } = require('../controllers/journalController');
 const authMiddleware = require('../middlelwares/authMiddleware');
 
@@ -16,6 +17,7 @@ routesJournal.get('/journals/:id', show);
 routesJournal.get('/journal/:id', showOne);
 
 routesJournal.post('/journal', store);
+routesJournal.post('/journal-admin', storeJournalAdmin);
 routesJournal.put('/journal/:id', update);
 routesJournal.delete('/journal/:id', destroy);
 

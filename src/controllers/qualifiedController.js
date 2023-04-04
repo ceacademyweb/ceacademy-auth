@@ -53,11 +53,25 @@ const destroy = (req, res) => {
   })
 }
 
+const levelChange = (req, res) => {
+  const body = req.body;
+  // console.log(body)
+  // res.send(body)
+
+  User.findOneAndUpdate({_id: body.id}, {level: body.level}, (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({error: err})
+    }
+    res.send({message: 'Nivel actualizado'})
+  })
+}
 module.exports = {
   // index,
   // show,
   store,
   // update,
   destroy,
+  levelChange
   // readFile
 };

@@ -4,6 +4,7 @@ const {
   // show,
   store,
   // update,
+  levelChange,
   destroy,
   // readFile
 } = require('../controllers/qualifiedController');
@@ -13,6 +14,7 @@ const routesQualified = express.Router();
 
 
 routesQualified.post('/qualified', store);
+routesQualified.post('/level', levelChange);
 routesQualified.put('/qualified/:id', destroy);
 
 module.exports = routesQualified;

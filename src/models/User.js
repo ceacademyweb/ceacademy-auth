@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const {SchemaType, Schema} = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -58,6 +59,10 @@ const userSchema = new mongoose.Schema({
   text: {
     type: String,
     required: false,
+  },
+  journals:{
+    type: Schema.Types.ObjectId,
+    ref: 'Journal',
   },
   createdAt: {
     type: Date,

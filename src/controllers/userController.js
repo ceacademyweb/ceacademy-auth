@@ -2,7 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv').config();
-
+const Journal = require('../models/journal');
 const index = (req, res) => {
   console.log(req.body.user);
   User.find({}, (err, result) => {
@@ -13,7 +13,37 @@ const index = (req, res) => {
     }
   });
 };
+const showWithJournal = async (req, res) => {
+  const id = req.params.id;
+  const resultado = await Journal.aggregate([
+    {
+      $lookup: {
+        from: 'users',
+        localField: '_user',
+        foreignField: '_id',
+        as: 'user',
+      }
+    }
+  ])
+  console.log(resultado)
+  res.send(resultado)
+};
+const showWithUser = async (req, res) => {
+  const id = req.params.id;
+  Journal.findOne({ _id: id }, (err, result) => {
+    // res.send(result);
+    User.findOne({ _id: result.userId }, (err, user) => {
+      res.send({result, user})
+    })
+  })
+};
 
+const getJournalsForUser = (req, res) => {
+  const id = req.params.id;
+  Journal.find({ userId: id }, (err, result) => {
+    res.send(result);
+  });
+};
 const store = (req, res) => {
   const user = new User({
     name: req.body.name,
@@ -118,6 +148,22 @@ const logout = (req, res) => {
   res.send(req.token);
 };
 
+const getJournal = (req, res) => {
+  const id = req.params.id;
+  Journal.find({ _id: id }, (err, result) => {
+    if (err) {
+      res.status(401).send(err);
+    } else {
+      User.findOne({ _id: result[0].userId }, (err, user) => {
+        if(err) {
+          res.status(401).send(err);
+        }
+        res.status(200).json({result, user});
+      })
+    }
+  });
+}
+
 module.exports = {
   index,
   store,
@@ -126,4 +172,8 @@ module.exports = {
   update,
   userDelete,
   show,
+  showWithJournal,
+  showWithUser,
+  getJournalsForUser,
+  getJournal
 };
